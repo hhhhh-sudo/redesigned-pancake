@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户兴趣调查问卷</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .form-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .radio-group, .checkbox-group {
+            margin-top: 5px;
+        }
+        .radio-option, .checkbox-option {
+            margin-bottom: 8px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .required:after {
+            content: " *";
+            color: red;
+        }
+        .char-limit {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>用户兴趣调查问卷</h1>
+        <form action="mailto:dj7022743lan@163.com" method="post" enctype="text/plain">
+            <!-- 问题1：性别 -->
+            <div class="form-group">
+                <label class="required">1. 你是男性还是女性？</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="male" name="gender" value="男性" required>
+                        <label for="male">男性</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="female" name="gender" value="女性">
+                        <label for="female">女性</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 问题2：喜欢的游戏 -->
+            <div class="form-group">
+                <label class="required">2. 你喜欢玩什么游戏？</label>
+                <input type="text" id="game" name="favorite_game" maxlength="20" required 
+                       placeholder="请输入你喜欢的游戏名称">
+                <div class="char-limit">最多20个字符</div>
+            </div>
+
+            <!-- 问题3：最好的朋友 -->
+            <div class="form-group">
+                <label class="required">3. 你最好的朋友是谁？</label>
+                <select id="friend" name="best_friend" required>
+                    <option value="" disabled selected>请选择...</option>
+                    <option value="冯">冯</option>
+                    <option value="男性朋友">男性朋友</option>
+                    <option value="女性朋友">女性朋友</option>
+                </select>
+            </div>
+
+            <!-- 问题4：问卷评价 -->
+            <div class="form-group">
+                <label>4. 你觉得这个问卷怎么样？</label>
+                <textarea id="feedback" name="questionnaire_feedback" 
+                          placeholder="请分享你的意见或建议"></textarea>
+            </div>
+
+            <!-- 问题5：自由填写 -->
+            <div class="form-group">
+                <label>5. 不知道问什么了，填你想写的吧</label>
+                <textarea id="free_text" name="free_text" 
+                          placeholder="任何你想分享的内容"></textarea>
+            </div>
+
+            <button type="submit">提交问卷</button>
+        </form>
+    </div>
+
+    <script>
+        // 实时显示字符数
+        document.getElementById('game').addEventListener('input', function(e) {
+            const charCount = e.target.value.length;
+            document.querySelector('.char-limit').textContent = `${charCount}/20 字符`;
+        });
+    </script>
+</body>
+</html>
